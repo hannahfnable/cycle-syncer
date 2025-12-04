@@ -1,10 +1,12 @@
 from operator import attrgetter 
+from datetime import datetime, timedelta
 
+from periods.period import Period
 class Cycle_Finder:
-    def __init__(self, last_period: datetime, previous_period: datetime, estimated_length: number, period_length: number):
+    def __init__(self, last_period: datetime, previous_period: datetime, estimated_length: int, period_length: int):
         self.estimated_length = estimated_length
         self.period_length = period_length
-        self.Periods = initialize_periods(last_period, previous_period)
+        self.Periods = self.initialize_periods(last_period, previous_period)
         self.get_average_cycle_length()
         self.get_ovulation_length()
         self.next_cycle = self.create_next_cycle()

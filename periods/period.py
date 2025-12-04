@@ -1,4 +1,10 @@
 
+from datetime import datetime, timedelta
+
+from enums.phase_type import PhaseType
+from periods.phase import Phase
+
+
 class Period:
     def __init__(self, start_date: datetime, end_date: datetime, average_length: int, period_length: int, ovulation_length: int):
         self.period_id = id(self)
@@ -15,7 +21,7 @@ class Period:
         self.end_date = actual_end_date
         self.length = (self.end_date - self.start_date).days
     
-    def estimate_phases(self, period_length, ovulation_length): Phase[]:
+    def estimate_phases(self, period_length, ovulation_length) -> list[Phase]:
         ovulation_day = self.length // 2
         menstruation_length = self.period_length
 

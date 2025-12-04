@@ -1,4 +1,17 @@
 
+from calendar.timetable import Timetable
+from meal_plans.meal_planner import generate_meal_plan
+from enums.phase_type import PhaseType
+from activity_generators import (
+    suggest_exercise,
+    suggest_social_activity,
+    suggest_wellbeing_activity,
+    suggest_productivity_activity,
+    suggest_rest_activity,
+    suggest_hobby_activity
+)
+
+
 def generate_timetable(phase: PhaseType):
     timetable = Timetable()
     generate_activities = generate_activities(phase)

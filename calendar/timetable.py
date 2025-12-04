@@ -1,7 +1,9 @@
 
+from calendar.time_block import TimeBlock
+
 class Timetable:
-    def __init__():
-        self.timeblocks = generate_timeblocks()
+    def __init__(self):
+        self.timeblocks = self.generate_timeblocks()
 
     def generate_timeblocks():
         days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']

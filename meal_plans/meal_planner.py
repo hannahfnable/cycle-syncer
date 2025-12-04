@@ -1,12 +1,16 @@
 
 
-class Weekly_Meal_Plan(self):
+import json
+from enums.phase_type import PhaseType
+
+
+class Weekly_Meal_Plan:
     def __init__(self, phase: PhaseType):
         self.phase = phase
         self.meals = self.generate_meal_plan(phase)
 
     def generate_meal_plan(self, phase: PhaseType):
-        switch (phase):
+        match (phase):
             case PhaseType.menstruation:
                 return 
 
