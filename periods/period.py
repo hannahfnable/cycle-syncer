@@ -1,14 +1,21 @@
 
 class Period:
-    def __init__(self, start_date, average_length: int, period_length: int, ovulation_length: int):
+    def __init__(self, start_date: datetime, end_date: datetime, average_length: int, period_length: int, ovulation_length: int):
+        self.period_id = id(self)
         self.start_date = start_date
-        self.length = average_length
-        self.period_length = period_length
-        self.ovulation_length = ovulation_length
-        self.end_date = start_date + timedelta(days=average_length)
-        self.phases = self.generate_phases()
+        if end_date:
+            self.end_date = end_date
+            self.length = (self.end_date - self.start_date).days
+        else:
+            self.end_date = start_date + timedelta(days=average_length)
+            self.length = average_length
+        self.phases = self.estimate_phases(period_length, ovulation_length)
     
-    def generate_phases(self): Phase[]:
+    def update_actual_end_date(self, actual_end_date: datetime):
+        self.end_date = actual_end_date
+        self.length = (self.end_date - self.start_date).days
+    
+    def estimate_phases(self, period_length, ovulation_length): Phase[]:
         ovulation_day = self.length // 2
         menstruation_length = self.period_length
 

@@ -10,7 +10,21 @@ class Weekly_Meal_Plan(self):
             case PhaseType.menstruation:
                 return 
 
-    def food_list(self):
+    def getFoodList(self):
         with open('phases.json') as f:
             data = json.load(f)
-        return data[self.phase.value]['foods']
+        foodData = data[self.phase.value]
+        return foodData
+    
+    def getShoppingList(self):
+        foodList = self.getFoodList()
+        shoppingList = {}
+        for meal in foodList['meals']:
+            for ingredient in meal['ingredients']:
+                name = ingredient['name']
+                quantity = ingredient['quantity']
+                if name in shoppingList:
+                    shoppingList[name] += quantity
+                else:
+                    shoppingList[name] = quantity
+        return shoppingList
